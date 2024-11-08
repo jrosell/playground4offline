@@ -1,0 +1,57 @@
+---
+title: "mtcars offline crosstalk"
+output: html_document
+output_dir: docs
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(crosstalk)
+  library(plotly) # remotes::install_github("plotly/plotly.R")
+  library(DT)
+})
+
+mtcars_ct <- mtcars |> 
+  as_tibble(rownames = "id") |> 
+  SharedData$new(key = ~id)
+```
+
+plotly
+
+```{r}
+plotly::ggplotly(ggplot(mtcars_ct, aes(mpg, disp, label = "id")) + geom_point(), tooltip = "name") %>%
+  highlight(
+    on = "plotly_selected",
+    off = "plotly_doubleclick"
+  )
+
+```
+
+dt
+
+```{r}
+dt <- datatable(mtcars_ct,
+  fillContainer = TRUE,
+  rownames = FALSE,
+  options = list(autowidth = TRUE)
+)
+dt
+```
+
+
+
+```{js}
+function register_service_worker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then(() => console.log('Service Worker registered successfully.'))
+      .catch(error => console.log('Service Worker registration failed:', error));
+  }
+}
+register_service_worker()
+```
