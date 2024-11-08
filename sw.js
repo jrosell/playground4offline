@@ -1,9 +1,9 @@
 // sw.js
 const CACHE_NAME = 'offline-cache-v1';
 const URLS_TO_CACHE = [
-    '/',          // Cache the root index.html
-    '/index.html' // Explicitly cache index.html in case the root path isn't recognized
-    '/sw.js'
+    '/playground4offline/',          // Cache the root index.html
+    '/playground4offline/index.html', // Explicitly cache index.html in case the root path isn't recognized
+    '/playground4offline/sw.js'
 ];
 
 // Install event: cache the necessary files
