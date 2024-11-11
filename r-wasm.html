@@ -1,7 +1,17 @@
 <html><body>
 <div id="app">Loading...</div>
 <script>
+function register_service_worker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/playground4offline/sw.js')
+      .then(() => console.log('Service Worker registered successfully.'))
+      .catch(error => console.log('Service Worker registration failed:', error));
+  }
+}  
+</script>  
+<script>
 import('https://webr.r-wasm.org/latest/webr.mjs').then(
+  register_service_worker();
   async ({ WebR }) => {
     const webR = new WebR();
     await webR.init();
@@ -14,14 +24,5 @@ import('https://webr.r-wasm.org/latest/webr.mjs').then(
   }
 );
 </script>
-<script>
-function register_service_worker() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/playground4offline/sw.js')
-      .then(() => console.log('Service Worker registered successfully.'))
-      .catch(error => console.log('Service Worker registration failed:', error));
-  }
-}
-register_service_worker()
-</script>  
+
 </body></html>
