@@ -1,0 +1,16 @@
+<html><body>
+<div id="app">Loading...</div>
+<script>
+import('https://webr.r-wasm.org/latest/webr.mjs').then(
+  async ({ WebR }) => {
+    const webR = new WebR();
+    await webR.init();
+
+    let result = await webR.evalR('rnorm(10,5,1)');
+    let output = await result.toArray();    
+    console.log('Result of running `rnorm` from webR: ', output);
+    const app = document.getElementById("app");
+    app.innerHTML = '<p>Result of running `rnorm` from webR:</p><pre>'+output+'</pre>';
+  }
+);
+</script></body></html>
