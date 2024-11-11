@@ -4,19 +4,11 @@
 <script>
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 workbox.routing.registerRoute(
-  new RegExp('webr|wasm'),
+  new RegExp('webr|wasm|googleapis'),
   workbox.strategies.cacheFirst({
     cacheName: 'webr',
   })
 );
-function register_service_worker() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/playground4offline/sw.js')
-      .then(() => console.log('Service Worker registered successfully.'))
-      .catch(error => console.log('Service Worker registration failed:', error));
-  }
-}
-register_service_worker()
 </script>  
 <div id="app">Loading...</div>
 <script>
