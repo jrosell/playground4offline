@@ -15,15 +15,6 @@ const URLS_TO_CACHE = [
     'https://webr.r-wasm.org/main/libRblas.so',
     'https://webr.r-wasm.org/main/vfs/usr/lib/R/library/translations/DESCRIPTION'
 ];
-
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
-workbox.routing.registerRoute(
-  new RegExp('webr.r-wasm.org'),
-  workbox.strategies.cacheFirst({
-    cacheName: 'webr',
-  })
-);
-
 // Install event: cache the necessary files
 self.addEventListener('install', event => {
     event.waitUntil(
