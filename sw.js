@@ -1,4 +1,4 @@
-const CONFIG_nocors = true;
+const CONFIG_nocors = false;
 
 // sw.js
 const CACHE_NAME = 'offline-cache-v1';
