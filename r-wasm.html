@@ -11,11 +11,10 @@ function register_service_worker() {
 </script>  
 <script>
 import('https://webr.r-wasm.org/latest/webr.mjs').then(
-  register_service_worker();
   async ({ WebR }) => {
     const webR = new WebR();
     await webR.init();
-
+    register_service_worker();    
     let result = await webR.evalR('rnorm(10,5,1)');
     let output = await result.toArray();    
     console.log('Result of running `rnorm` from webR: ', output);
