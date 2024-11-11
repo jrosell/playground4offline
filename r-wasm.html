@@ -1,5 +1,6 @@
-<html><body>
-<div id="app">Loading...</div>
+<html>
+<head><title>Offline r-wasn with WebR</title></head>
+<body>
 <script>
 function register_service_worker() {
   if ('serviceWorker' in navigator) {
@@ -7,14 +8,15 @@ function register_service_worker() {
       .then(() => console.log('Service Worker registered successfully.'))
       .catch(error => console.log('Service Worker registration failed:', error));
   }
-}  
+}
+register_service_worker()
 </script>  
+<div id="app">Loading...</div>
 <script>
 import('https://webr.r-wasm.org/latest/webr.mjs').then(
   async ({ WebR }) => {
     const webR = new WebR();
-    await webR.init();
-    register_service_worker();    
+    await webR.init();    
     let result = await webR.evalR('rnorm(10,5,1)');
     let output = await result.toArray();    
     console.log('Result of running `rnorm` from webR: ', output);
@@ -23,5 +25,5 @@ import('https://webr.r-wasm.org/latest/webr.mjs').then(
   }
 );
 </script>
-
-</body></html>
+</body>
+</html>
