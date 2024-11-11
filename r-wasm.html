@@ -3,9 +3,9 @@
 <body>
 <p>Not working offline.</p>
 <script>
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
+importScripts('/playground4online/workbox-sw.js');
 workbox.routing.registerRoute(
-  new RegExp('webr|wasm|googleapis'),
+  new RegExp('webr|wasm|googleapis|workbox'),
   workbox.strategies.cacheFirst({
     cacheName: 'webr',
   })
