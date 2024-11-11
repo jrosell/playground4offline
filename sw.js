@@ -1,5 +1,3 @@
-const CONFIG_nocors = true;
-
 // sw.js
 const CACHE_NAME = 'offline-cache-v1';
 const URLS_TO_CACHE = [
@@ -24,13 +22,6 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME)
             .then(cache => {
                 console.log('Caching files during install...');                
-                if (CONFIG_nocors) {
-                    return cache.addAll(URLS_TO_CACHE.map(function(urlToPrefetch) {
-                        return new Request(urlToPrefetch, { mode: 'no-cors' });
-                     })).then(function() {
-                       console.log('All resources have been fetched and cached.');
-                     });
-                }
                 return cache.addAll(URLS_TO_CACHE);
             })
     );
