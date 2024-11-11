@@ -13,4 +13,15 @@ import('https://webr.r-wasm.org/latest/webr.mjs').then(
     app.innerHTML = '<p>Result of running `rnorm` from webR:</p><pre>'+output+'</pre>';
   }
 );
-</script></body></html>
+</script>
+<script>
+function register_service_worker() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/playground4offline/sw.js')
+      .then(() => console.log('Service Worker registered successfully.'))
+      .catch(error => console.log('Service Worker registration failed:', error));
+  }
+}
+register_service_worker()
+</script>  
+</body></html>
